@@ -141,6 +141,11 @@
                 const audioFolder = storage.child('audios/' + selectedAudio.name).put(selectedAudio)
                 audioFolder.on('state_changed', (snapshot) => {
                   //uploading time track the progress
+
+                  const progress = document.getElementById('progress')
+                  const presentProgress = parseInt((snapshot.bytesTransferred/snapshot.totalBytes)*100)
+                  progress.value = presentProgress;
+                  btn.innerText = `${presentProgress} % uploading...`
                 },
                 (error) => {
                   // uploading time track the errors
@@ -152,32 +157,43 @@
                     alert("uploaded")
                     console.log(url)
 
+                    // const a = document.createElement('a');
+                    // a.href = url;
+                    // a.textContent = url
+                    // document.body.append(a)
+
+                    // upload the data to realtime database
+
+                    const database = firebase.database();
+                    const Allaudios = database.ref('allAudios/')
+                    const name = document.getElementById('username').value;
+                    const albumName = document.getElementById('album').value;
+                    const desc = document.getElementById('desc').value;
+
+
                     const data = {
-                      audioUrl:url
+                      myAudioUrl:url,
+                      username:name,
+                      album:albumName,
+                      description:desc
                     }
 
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.textContent = url
-                    document.body.append(a)
-
-                    // const database = firebase.database();
-                    // const Allaudios = database.ref('allaudios')
-                    // Allaudios.push(data)
-                    // .then(()=> {
-                    //   alert("uploaded data")
-                    // })
-                    // .catch((error) => {
-                    //   console.log(error)
-                    // })
+                    Allaudios.push(data)
+                    .then(()=> {
+                      alert("uploaded data")
+                    })
+                    .catch((error) => {
+                      console.log(error)
+                    })
                   })
+                  btn.innerText = "uploaded"
                 }
                 )
               }
             }
           })
         } catch (error) {
-          
+
         }
     </script>
   </body>
