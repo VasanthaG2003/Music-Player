@@ -69,11 +69,86 @@
     border-radius: 100px;
 }
 
+
+#container{
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    background-color: black;
+    padding-top: 80px;
+}
+#container .card{
+    padding: 30px;
+    min-height: 200px;
+    box-shadow: 0px 0px 10px #bcbcbc;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(#bdbcbc4b, #a7a7a73c);
+    border:  1px solid #ffffff54;
+    backdrop-filter: blur(90px);
+    color: #fff;
+
+
+}
+#container .card:hover{
+    transform: scale(0.9);
+    transition: 0.7s;
+}
 @keyframes spinner{
     0%{
-        transform: rotate(-360deg);
+        transform:rotate(-360deg);
     }
     100%{
         transform: rotate(360deg);
     }
+}
+
+/* hero-section */
+.hero-section{
+    min-height: 100vh;
+    background-color: #191919;
+    color: #fff;
+}
+.hero-text{
+    padding: 20px;
+}
+.heading{
+    font-size: 4rem;
+}
+.subtitle{
+    font-size: 1.3rem;
+    letter-spacing: 1.3px;
+    line-height: 1.6;
+    color: #c8c8c8;
+}
+.home small{
+    letter-spacing: 3px;
+    color: #ef627f;
+}
+.btn-solid{
+    border: none;
+    padding: 15px;
+    min-width: 200px;
+    font-size: 1.3rem;
+    border-radius: 100px;
+    margin-left: 20px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #f62d55;
+}
+.btns{
+    margin-top: 30px;
+}
+.btn-solid:hover{
+    background: transparent;
+    border: 2px solid #f62d55;
+    transition: all 0.8s;
+}
+.btn-outline:hover{
+    background: linear-gradient(to right, #700593, #f62d55);
+    border: 2px solid transparent;
+    transition: all 0.8s;
 }

@@ -35,7 +35,7 @@
                 <a class="nav-link" href="./upload.html" tabindex="-1" aria-disabled="true">Upload</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
+            <form class="d-flex">
               <input class="form-control me-2 search rounded-5" type="search" placeholder="Search" aria-label="Search">
               <button class="btn bg-white fs-4 rounded-5" type="submit">Search</button>
             </form>
@@ -44,8 +44,30 @@
       </nav>
 
 
-      <div class="home">
-        <div class="container" id="container">
+      <div class="home container-fluid">
+        <section class="hero-section">
+          <div class="row align-items-center">
+            <div class="col-12 col-sm-12 col-md-6">
+              <div class="hero-text">
+                <small>Music Streaming...</small>
+                <h1 class="heading">Enjoy The Music Streaming...</h1>
+                <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor esse hic quae possimus laboriosam neque asperiores voluptate temporibus maiores labore quidem facilis, expedita dolorem ipsam modi aliquid error molestias quo!</p>
+
+                <div class="btns">
+                  <button class="btn-solid">Create Album</button>
+                  <button class="btn-outline">Explore Albums</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+              <div class="hero-image">
+                <img src="https://c8.alamy.com/comp/DGGDB6/an-illustration-of-different-color-music-notes-DGGDB6.jpg" alt="" width="100%">
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="container-fluid" id="container">
 
         </div>
       </div>
@@ -74,18 +96,24 @@
         const audioFolder = database.ref('allAudios/')
 
         audioFolder.once('value')
-        .then((snapshot) => {
-          const data = snapshot.val()
-          console.log(data)
-          const container = document.getElementById('container');
-          Object.keys(data).forEach(element => {
-            container.innerHTML = 
-            `<h1>${data[element].audioUrl}</h1>`
-          })
-        })
-        .catch((error) => {
+       .then((snapshot)=>{
+        const data = snapshot.val();
+        console.log(data)
+        const container = document.getElementById("container");
+        Object.keys(data).forEach((element, index)=> {
+          container.innerHTML += `
+          <div class="card">
+            <h1>${data[element].album}</h1>
+            <h1>${data[element].userName}</h1>
+            <audio src=${data[element].myAudioUrl} controls></audio>
+          </div>`
 
         })
+
+       })
+       .catch((error)=>{
+
+       })
       </script>
 
       
